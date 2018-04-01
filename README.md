@@ -2,11 +2,27 @@
 
 Scala support for [lsp-mode] using [metals]
 
+## Installation
+
+Clone this repo and add:
+
+```emacs-lisp
+(add-to-list 'load-path "<path to lsp-java>")
+(require 'lsp-scala)
+(add-hook scala-mode-hook #'lsp-scala-enable)
+```
+
+Install [coursier](https://github.com/coursier/coursier#command-line) and put it on your $PATH.  Alternatively, customize `lsp-scala-metals-command`.
+
+Follow the [metals instructions](https://github.com/scalameta/metals/blob/master/BETA.md) to install the `MetalsPlugin`.  You don't need the VSCode extension, nor is it required to publish the server locally.
+
 ## Usage
 
-Follow the [metals instructions](https://github.com/scalameta/metals/blob/master/BETA.md) to install the `MetalsPlugin` and the per-project setup through producing the build metadata.  You don't need to build the VSCode extension or publish the server locally.
+Follow the [metals instructions](https://github.com/scalameta/metals/blob/master/BETA.md) per-project setup through producing the build metadata.  Instead of launching `code`, load your file in emacs.  The first Scala file you visit will hang briefly.  If all is well, you should see something like this in `*Messages*`
 
-Instead of launching `code`, load your file in emacs.  Run `lsp-scala-enable` to start the server.
+```
+22:43:27.928 INFO  s.m.m.MetalsServices - Client is initialized
+```
 
 ## Does it work?
 
