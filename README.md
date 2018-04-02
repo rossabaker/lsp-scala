@@ -1,8 +1,12 @@
 # lsp-scala
 
-Scala support for [lsp-mode] using [metals]
+Scala support for [lsp-mode].
 
-## Installation
+## Metals
+
+By default, `lsp-scala` launches [metals].
+
+### Installation
 
 Clone this repo and add:
 
@@ -16,7 +20,7 @@ Install [coursier](https://github.com/coursier/coursier#command-line) and put it
 
 Follow the [metals instructions](https://github.com/scalameta/metals/blob/master/BETA.md) to install the `MetalsPlugin`.  You don't need the VSCode extension, nor is it required to publish the server locally.
 
-## Usage
+### Usage
 
 Follow the [metals instructions](https://github.com/scalameta/metals/blob/master/BETA.md) per-project setup through producing the build metadata.  Instead of launching `code`, load your file in emacs.  The first Scala file you visit will hang briefly.  If all is well, you should see something like this in `*Messages*`
 
@@ -24,7 +28,7 @@ Follow the [metals instructions](https://github.com/scalameta/metals/blob/master
 22:43:27.928 INFO  s.m.m.MetalsServices - Client is initialized
 ```
 
-## Does it work?
+### Does it work?
 
 metals describes itself as "very alpha stage".  Temper your expectations, cheer them on, and [help if you can](https://github.com/scalameta/metals/blob/master/CONTRIBUTING.md).
 
@@ -47,3 +51,7 @@ Some of this is too nuanced to fit in a boolean.  Some of this may be me my misu
 
 [lsp-mode]: https://github.com/emacs-lsp/lsp-mode
 [metals]: https://github.com/scalameta/metals
+
+## Other language servers
+
+Other Scala language servers should work in theory.  The easiest way, if your server launches from the command line, is to customize `lsp-scala-server-command`.

@@ -11,11 +11,11 @@
 (require 'lsp-mode)
 
 ;;;###autoload
-(defcustom lsp-scala-metals-command '("coursier" "launch"
+(defcustom lsp-scala-server-command '("coursier" "launch"
                                       "-r" "bintray:scalameta/maven"
                                       "org.scalameta:metals_2.12:0.1-SNAPSHOT"
                                       "-M" "scala.meta.metals.Main")
-  "The command to launch metals"
+  "The command to launch the language server"
   :group 'lsp-scala
   :type 'list)
 
@@ -26,7 +26,7 @@
 
 (lsp-define-stdio-client lsp-scala "scala"
                          (lambda () lsp-scala-workspace-root)
-                         lsp-scala-metals-command)
+                         lsp-scala-server-command)
 
 (provide 'lsp-scala)
 ;;; lsp-scala.el ends here
