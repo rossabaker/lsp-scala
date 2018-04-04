@@ -9,12 +9,10 @@
 ;; URL: https://github.com/rossabaker/lsp-scala
 
 (require 'lsp-mode)
+(require 'sbt-mode)
 
 ;;;###autoload
-(defcustom lsp-scala-server-command '("coursier" "launch"
-                                      "-r" "bintray:scalameta/maven"
-                                      "org.scalameta:metals_2.12:0.1-SNAPSHOT"
-                                      "-M" "scala.meta.metals.Main")
+(defcustom lsp-scala-server-command '("metals")
   "The command to launch the language server"
   :group 'lsp-scala
   :type 'list)
@@ -24,9 +22,29 @@
   :group 'lsp-scala
   :type 'directory)
 
+(defvar lsp-scala--config-options `(:hover (:enabled t)
+                                    :highlight (:enabled t)
+                                    :scalac (:completions (:enabled t)
+                                             :diagnostics (:enabled t))))
+
+(defun lsp-scala--set-configuration ()
+  ;; TODO is this going to irritate everything but metals?
+  (lsp--set-configuration `(:metals ,lsp-scala--config-options)))
+
+(add-hook 'lsp-after-initialize-hook 'lsp-scala--set-configuration)
+
 (lsp-define-stdio-client lsp-scala "scala"
-                         (lambda () lsp-scala-workspace-root)
+                         (lambda () (sbt:find-root))
                          lsp-scala-server-command)
+
+(defun lsp-scala--run-from-root (orig &rest args)
+  (let* ((client (car args))
+         (lang-id (funcall (lsp--client-language-id client) (current-buffer))))
+    (if (equal "scala" lang-id)
+        (let ((default-directory (file-truename (funcall (lsp--client-get-root client)))))
+          (apply orig args))
+      (apply orig args))))
+(advice-add 'lsp--start :around #'lsp-scala--run-from-root)
 
 (provide 'lsp-scala)
 ;;; lsp-scala.el ends here

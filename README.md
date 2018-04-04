@@ -16,7 +16,7 @@ Clone this repo and add:
 (add-hook scala-mode-hook #'lsp-scala-enable)
 ```
 
-Install [coursier](https://github.com/coursier/coursier#command-line) and put it on your $PATH.  Alternatively, customize `lsp-scala-metals-command`.
+Customize `lsp-scala-metals-command` to however you start metals.  I am using (start-server.sh)[https://github.com/scalameta/metals/blob/master/bin/start-server.sh], renamed to `metals` in my `$PATH`.  After release, the default value will be expressed in terms of a coursier command.
 
 Follow the [metals instructions](https://github.com/scalameta/metals/blob/master/BETA.md) to install the `MetalsPlugin`.  You don't need the VSCode extension, nor is it required to publish the server locally.
 
@@ -34,20 +34,20 @@ metals describes itself as "very alpha stage".  Temper your expectations, cheer 
 
 Some of this is too nuanced to fit in a boolean.  Some of this may be me my misunderstanding.  More user experience reports welcome.
 
-* [ ] `company-lsp`: cannot complete at point
-* [X] `lsp-capabilities`: promises more than it delivers, but the call works
+* [x] `company-lsp`: names, but no help on params yet
+* [x] `lsp-capabilities`
 * [ ] `lsp-execute-code-action`: I don't know what this does
 * [ ] `lsp-format-buffer`: slow, doesn't seem to do anything
 * [ ] `lsp-goto-implementation`: `implementationProvider` capability not yet supported by LS
 * [ ] `lsp-goto-type-definition`: `typeDefinitionProvider` capability not yet supported by LS
-* [ ] `lsp-info-under-point`: does nothing
-* [ ] `lsp-rename`: think I saw this work once, can't reproduce)
-* [X] `lsp-restart-workspace`
-* [ ] `lsp-symbol-highlight`: does nothing
-* [ ] `lsp-ui-doc`: mode does nothing
-* [X] `lsp-ui-imenu`
-* [ ] `lsp-ui-sideline`: does nothing
-* [ ] `lsp-ui-peek`: does nothing
+* [x] `lsp-info-under-point`
+* [x] `lsp-rename`: works on local variables. Global not implemented yet.
+* [x] `lsp-restart-workspace`
+* [x] `lsp-symbol-highlight`
+* [ ] `lsp-ui-doc`: no errors, but not seeing any docs
+* [x] `lsp-ui-imenu`
+* [x] `lsp-ui-sideline`
+* [x] `lsp-ui-peek`: is finding definition and references. Oddly, `lsp-got-type-definition` doesn't.
 
 [lsp-mode]: https://github.com/emacs-lsp/lsp-mode
 [metals]: https://github.com/scalameta/metals
