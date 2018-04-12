@@ -35,7 +35,7 @@ using the same version in `<version>` to match the sbt plugin. You could set an 
 
 ### SBT Integration
 
-Follow the [metals instructions](https://github.com/scalameta/metals/blob/master/docs/installation.md) to install the `MetalsPlugin`.  Ignore the instructions for atom.
+Follow the [metals instructions](https://github.com/scalameta/metals/blob/master/docs/installation.md) to install the `MetalsPlugin`.  Ignore the instructions for installing vscode.
 
 Continue to follow the per-project setup to produce the build metadata, i.e. enabling the scalac semanticdb compiler plugin. You may not need to perform this step if you are running a recent version of scalafix.
 
