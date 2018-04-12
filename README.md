@@ -39,7 +39,7 @@ Follow the [metals instructions](https://github.com/scalameta/metals/blob/master
 
 Continue to follow the per-project setup to produce the build metadata, i.e. enabling the scalac semanticdb compiler plugin. You may not need to perform this step if you are running a recent version of scalafix.
 
-Run the sbt task `setupMetals` and open a scala file.
+Run the sbt task `metalsSetup` and open a scala file.
 
 If you have ENSIME installed, avoid potential conflicts by running `M-x ensime-mode` to disable it for the buffer.
 
