@@ -27,7 +27,7 @@ Download (`start-server.sh`)[https://github.com/scalameta/metals/blob/master/bin
 
 You must tell emacs which version of the server to use by setting this variable
 
-```scala
+```emacs-lisp
 (setq lsp-scala-server-command '("metals" "<version>"))
 ```
 
