@@ -6,27 +6,52 @@ Scala support for [lsp-mode].
 
 By default, `lsp-scala` launches [metals].
 
-### Installation
+## Installation
 
-Clone this repo and add:
+You must install the Emacs plugin (this), the server, and an sbt plugin.
+
+### Emacs
+
+Install the `lsp-mode` and `sbt-mode` dependencies using your preferred package manager.
+
+Then clone this repo and load it:
 
 ```emacs-lisp
 (add-to-list 'load-path "<path to lsp-java>")
 (require 'lsp-scala)
+```
+
+### Metals Server Installation
+
+Download (`start-server.sh`)[https://github.com/scalameta/metals/blob/master/bin/start-server.sh], renamed to `metals` on your `$PATH`, or customise `lsp-scala-server-command`.
+
+You must tell emacs which version of the server to use by setting this variable
+
+```scala
+(setq lsp-scala-server-command '("metals" "<version>"))
+```
+
+using the same version in `<version>` to match the sbt plugin. You could set an environment variable and share it between emacs and sbt.
+
+### SBT Integration
+
+Follow the [metals instructions](https://github.com/scalameta/metals/blob/master/docs/installation.md) to install the `MetalsPlugin`.  Ignore the instructions for atom.
+
+Continue to follow the per-project setup to produce the build metadata, i.e. enabling the scalac semanticdb compiler plugin. You may not need to perform this step if you are running a recent version of scalafix.
+
+Run the sbt task `setupMetals` and open a scala file.
+
+If you have ENSIME installed, avoid potential conflicts by running `M-x ensime-mode` to disable it for the buffer.
+
+Start the metals server with `M-x lsp-scala-enable`.
+
+If you want `lsp-scala` to load for every scala file, add this
+
+```emacs-lisp
 (add-hook scala-mode-hook #'lsp-scala-enable)
 ```
 
-Customize `lsp-scala-metals-command` to however you start metals.  I am using (start-server.sh)[https://github.com/scalameta/metals/blob/master/bin/start-server.sh], renamed to `metals` in my `$PATH`.  After release, the default value will be expressed in terms of a coursier command.
-
-Follow the [metals instructions](https://github.com/scalameta/metals/blob/master/BETA.md) to install the `MetalsPlugin`.  You don't need the VSCode extension, nor is it required to publish the server locally.
-
-### Usage
-
-Follow the [metals instructions](https://github.com/scalameta/metals/blob/master/BETA.md) per-project setup through producing the build metadata.  Instead of launching `code`, load your file in emacs.  The first Scala file you visit will hang briefly.  If all is well, you should see something like this in `*Messages*`
-
-```
-22:43:27.928 INFO  s.m.m.MetalsServices - Client is initialized
-```
+The buffer will hang briefly (30 seconds, worse on slow networks).  If all is well, you should see text appear in your minibuffer indicating that the server has started and you can issue `M-x lsp-info-under-point` to see the inferred type at point.
 
 ### Does it work?
 
