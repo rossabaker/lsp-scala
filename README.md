@@ -17,7 +17,7 @@ Install the `lsp-mode` and `sbt-mode` dependencies using your preferred package 
 Then clone this repo and load it:
 
 ```emacs-lisp
-(add-to-list 'load-path "<path to lsp-java>")
+(add-to-list 'load-path "<path to lsp-scala>")
 (require 'lsp-scala)
 ```
 
