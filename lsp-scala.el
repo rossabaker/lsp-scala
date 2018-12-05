@@ -49,6 +49,14 @@
                          (lambda () (sbt:find-root))
                          lsp-scala-server-command)
 
+(featurep 'lsp
+          (lsp-register-client
+           (make-lsp-client :new-connection (lsp-stdio-connection lsp-scala-server-command)
+                            :major-modes '(scala-mode)
+                            :server-id 'scala)
+           )
+          )
+
 (defun lsp-scala--run-from-root (orig &rest args)
   (let* ((client (car args))
          (lang-id (funcall (lsp--client-language-id client) (current-buffer))))
