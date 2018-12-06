@@ -33,6 +33,18 @@
 
 (add-hook 'lsp-after-initialize-hook 'lsp-scala--set-configuration)
 
+(defun lsp-scala-build-import ()
+  "Executes metals command build-import"
+  (interactive)
+  (lsp-send-execute-command "build-import" ())
+  )
+
+(defun lsp-scala-build-connect ()
+  "Executes metals command build-connect"
+  (interactive)
+  (lsp-send-execute-command "build-connect" ())
+  )
+
 (lsp-define-stdio-client lsp-scala "scala"
                          (lambda () (sbt:find-root))
                          lsp-scala-server-command)
