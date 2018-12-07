@@ -80,7 +80,7 @@ If you want `lsp-scala` to load for every scala file, add this:
 
 ## Does it work?
 
-metals describes itself as "work in progress".  Temper your expectations, cheer them on, and [help if you can](https://github.com/scalameta/metals/blob/master/CONTRIBUTING.md).
+metals describes itself as "work in progress".  Temper your expectations, cheer them on, and [help if you can](https://github.com/scalameta/metals/blob/master/CONTRIBUTING.md).  Though many lsp-mode features are not yet implemented, those that are appear to be working well.  Kudos to the metals team.
 
 Some of this is too nuanced to fit in a boolean.  Some of this may be me my misunderstanding.  More user experience reports welcome.
 
@@ -102,7 +102,8 @@ Some of this is too nuanced to fit in a boolean.  Some of this may be me my misu
 * [ ] `lsp-workspace-folders-switch`: `Capability not supported by the language server: "workspaceFolders"`
 
 ### `lsp-ui`
-* [*] `lsp-ui-flycheck`
+
+* [x] `lsp-ui-flycheck`: compiles on save, renders errors inline
 * [ ] `lsp-ui-doc`
 * [ ] `lsp-ui-imenu`
 * [ ] `lsp-ui-peek`
