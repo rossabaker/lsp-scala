@@ -90,7 +90,7 @@ Some of this is too nuanced to fit in a boolean.  Some of this may be me my misu
 * [ ] `lsp-describe-thing-at-point`: `Wrong type argument: hash-table-p, nil`
 * [ ] `lsp-document-highlight`: `Capability not supported by the language server: "documentHighlightProvider"`
 * [ ] `lsp-execute-code-action`: I don't know what this does
-* [ ] `lsp-format-buffer`: `Capability not supported by the language server: "documentFormattingProvider"``
+* [ ] `lsp-format-buffer`: `Capability not supported by the language server: "documentFormattingProvider"`
 * [ ] `lsp-goto-implementation`: `Capability not supported by the language server: "implementationProvider"`, but see `xref-find-definitions`
 * [ ] `lsp-goto-type-definition`: `Capability not supported by the language server: "typeDefinitionProvider"`, but see `xref-find-definitions`
 * [ ] `lsp-hover`: `textDocument/hover is not supported`
