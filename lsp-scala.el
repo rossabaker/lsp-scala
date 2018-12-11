@@ -28,12 +28,8 @@
   :group 'lsp-scala
   :type 'directory)
 
-(defvar lsp-scala--config-options `(:hover (:enabled t)
-                                    :highlight (:enabled t)
-                                    :scalac (:completions (:enabled t)
-                                             :diagnostics (:enabled t))))
+(defvar lsp-scala--config-options `())
 
-;; is this going to irritate everything but metals?
 (defun lsp-scala--set-configuration ()
   "Set the configuration for the Scala LSP server."
   (lsp--set-configuration `(:metals ,lsp-scala--config-options)))
@@ -41,15 +37,27 @@
 (add-hook 'lsp-after-initialize-hook 'lsp-scala--set-configuration)
 
 (defun lsp-scala-build-import ()
-  "Execute metals command build-import."
+  "Unconditionally run `sbt bloopInstall` and re-connect to the build server."
   (interactive)
   (lsp-send-execute-command "build-import" ())
   )
 
 (defun lsp-scala-build-connect ()
-  "Execute metals command build-connect."
+  "Unconditionally cancel existing build server connection and re-connect."
   (interactive)
   (lsp-send-execute-command "build-connect" ())
+  )
+
+(defun lsp-scala-doctor-run ()
+  "Open the Metals doctor to troubleshoot potential build problems."
+  (interactive)
+  (lsp-send-execute-command "doctor-run" ())
+  )
+
+(defun lsp-scala-sources-scan ()
+  "Walk all files in the workspace and index where symbols are defined."
+  (interactive)
+  (lsp-send-execute-command "source-scan" ())
   )
 
 (lsp-define-stdio-client lsp-scala "scala"
