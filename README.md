@@ -75,7 +75,7 @@ If all didn't go well, check the `.metals/metals.log` file.
 If you want `lsp-scala` to load for every scala file, add this:
 
 ```emacs-lisp
-(add-hook scala-mode-hook #'lsp-scala-enable)
+(add-hook 'scala-mode-hook #'lsp-scala-enable)
 ```
 
 ## Does it work?
