@@ -8,7 +8,7 @@
 ;; Keywords: scala, lsp, metals
 ;; URL: https://github.com/rossabaker/lsp-scala
 
-;;; Commentary
+;;; Commentary:
 
 ;; This package defines an lsp-mode client for Scala.
 
@@ -19,12 +19,12 @@
 
 ;;;###autoload
 (defcustom lsp-scala-server-command '("metals-emacs")
-  "The command to launch the language server,"
+  "The command to launch the language server."
   :group 'lsp-scala
   :type 'list)
 
 (defcustom lsp-scala-workspace-root default-directory
-  "The root directory of the workspace,"
+  "The root directory of the workspace."
   :group 'lsp-scala
   :type 'directory)
 
