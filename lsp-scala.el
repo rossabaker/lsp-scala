@@ -23,11 +23,6 @@
   :group 'lsp-scala
   :type 'list)
 
-(defcustom lsp-scala-workspace-root default-directory
-  "The root directory of the workspace."
-  :group 'lsp-scala
-  :type 'directory)
-
 (defvar lsp-scala--config-options `())
 
 (defun lsp-scala--set-configuration ()
