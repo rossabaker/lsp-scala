@@ -44,26 +44,22 @@
 (defun lsp-scala-build-import ()
   "Unconditionally run `sbt bloopInstall` and re-connect to the build server."
   (interactive)
-  (lsp-send-execute-command "build-import" ())
-  )
+  (lsp-send-execute-command "build-import" ()))
 
 (defun lsp-scala-build-connect ()
   "Unconditionally cancel existing build server connection and re-connect."
   (interactive)
-  (lsp-send-execute-command "build-connect" ())
-  )
+  (lsp-send-execute-command "build-connect" ()))
 
 (defun lsp-scala-doctor-run ()
   "Open the Metals doctor to troubleshoot potential build problems."
   (interactive)
-  (lsp-send-execute-command "doctor-run" ())
-  )
+  (lsp-send-execute-command "doctor-run" ()))
 
 (defun lsp-scala-sources-scan ()
   "Walk all files in the workspace and index where symbols are defined."
   (interactive)
-  (lsp-send-execute-command "source-scan" ())
-  )
+  (lsp-send-execute-command "source-scan" ()))
 
 (eval-after-load 'lsp
   '(lsp-register-client
