@@ -4,8 +4,8 @@
 
 ;; Author: Ross A. Baker <ross@rossabaker.com>
 ;; Version: 0.0.1
-;; Package-Requires: ((lsp-mode "3.0"))
-;; Keywords: scala, lsp, metals
+;; Package-Requires: ((emacs "24.4") (lsp-mode "5.0"))
+;; Keywords: languages tools scala lsp metals
 ;; URL: https://github.com/rossabaker/lsp-scala
 
 ;;; Commentary:
