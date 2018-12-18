@@ -68,7 +68,7 @@
 (eval-after-load 'lsp
   '(lsp-register-client
     (make-lsp-client :new-connection
-		     (lsp-stdio-connection (lambda () (lsp-scala--server-command)))
+           (lsp-stdio-connection 'lsp-scala--server-command)
 		     :major-modes '(scala-mode)
 		     :server-id 'scala)))
 
