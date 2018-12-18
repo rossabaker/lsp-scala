@@ -61,8 +61,8 @@
   (interactive)
   (lsp-send-execute-command "source-scan" ()))
 
-(eval-after-load 'lsp
-  '(lsp-register-client
+(with-eval-after-load 'lsp
+  (lsp-register-client
     (make-lsp-client :new-connection
            (lsp-stdio-connection 'lsp-scala--server-command)
 		     :major-modes '(scala-mode)
