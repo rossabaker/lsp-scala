@@ -18,10 +18,20 @@
 (require 'sbt-mode)
 
 ;;;###autoload
-(defcustom lsp-scala-server-command '("metals-emacs")
-  "The command to launch the language server."
+(defcustom lsp-scala-server-command "metals-emacs"
+  "The command to launch the Scala language server."
   :group 'lsp-scala
-  :type 'list)
+  :type 'file)
+
+;;;###autoload
+(defcustom lsp-scala-server-args '()
+  "Extra arguments for the Scala language server."
+  :group 'lsp-scala
+  :type '(repeat string))
+
+(defun lsp-scala--server-command ()
+  "Generate the Scala language server startup command."
+  `(,lsp-scala-server-command ,@lsp-scala-server-args))
 
 (defvar lsp-scala--config-options `())
 
@@ -55,9 +65,17 @@
   (lsp-send-execute-command "source-scan" ())
   )
 
+(eval-after-load 'lsp
+  '(lsp-register-client
+    (make-lsp-client :new-connection
+		     (lsp-stdio-connection (lambda () (lsp-scala--server-command)))
+		     :major-modes '(scala-mode)
+		     :server-id 'scala)))
+
+;; Legacy support for lsp-mode <= 5
 (lsp-define-stdio-client lsp-scala "scala"
                          (lambda () (sbt:find-root))
-                         lsp-scala-server-command)
+                         (lsp-scala--server-command))
 
 (provide 'lsp-scala)
 ;;; lsp-scala.el ends here

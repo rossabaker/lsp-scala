@@ -8,15 +8,30 @@ You must install the Emacs plugin (this) and a language server
 
 ### lsp-scala
 
-Install the `lsp-mode` and `sbt-mode` dependencies using your preferred package
-manager. Then clone this repo and load it:
+Clone this repo, and fetch `lsp-mode`, `lsp-ui`, and `sbt-mode` from
+MELPA with the package manager of your choice.  (We are working on
+adding this package to MELPA to make `lsp-scala` load like the rest.)
+Here is an example using `use-package`:
 
 ```emacs-lisp
-(add-to-list 'load-path "<path to lsp-scala>")
-(require 'lsp-scala)
-```
+(use-package lsp-mode
+  :ensure t)
 
-We are working on adding this package to MELPA to make this easier.
+(use-package lsp-scala
+  :load-path "~/path/to/lsp-scala"
+  :config
+  (setq lsp-scala-server-command "~/bin/metals-emacs")
+  (require 'lsp)
+  (add-hook 'scala-mode #'lsp))
+
+(use-package lsp-ui
+  :ensure t
+  :hook (lsp-mode . lsp-ui-mode))
+
+(use-package sbt-mode
+  :ensure t
+  :commands sbt-start sbt-command)
+```
 
 ### Language server
 
@@ -25,8 +40,8 @@ We are working on adding this package to MELPA to make this easier.
 Build a `metals-emacs` binary using the [Coursier] command line interface.
 
 ```sh
-# Make sure to use coursier v1.1.0-M9 or newer.
 curl -L -o coursier https://git.io/coursier
+METALS_VERSION=0.3.3
 chmod +x coursier
 ./coursier bootstrap \
   --java-opt -XX:+UseG1GC \
@@ -34,24 +49,26 @@ chmod +x coursier
   --java-opt -Xss4m \
   --java-opt -Xms1G \
   --java-opt -Xmx4G  \
-  --java-opt -Dmetals.client=lsp-emacs \
-  org.scalameta:metals_2.12:0.3.0 \
+  --java-opt -Dmetals.client=emacs \
+  org.scalameta:metals_2.12:${METALS_VERSION} \
   -r bintray:scalacenter/releases \
-  -r sonatype:releases \
-  -o metals-emacs -f
+  -r sonatype:snapshots \
+  -o /usr/local/bin/metals-emacs -f
 ```
 
 Put the resulting `metals-emacs` binary on your path.
 
 #### Other Scala language servers
 
-Other Scala language servers should work in theory.  The easiest way, if your server launches from the command line, is to customize `lsp-scala-server-command`.
+Other Scala language servers should work in theory.  The easiest way,
+if your server launches from the command line, is to customize
+`lsp-scala-server-command` and `lsp-scala-server-args`.
 
 ## Import a project
 
 ### SBT
 
-Open a `*.scala` file in your project and run `M-x lsp-scala-enable`.
+Open a `*.scala` file in your project and run `M-x lsp`.
 
 You will be prompted:
 
@@ -75,8 +92,13 @@ If all didn't go well, check the `.metals/metals.log` file.
 If you want `lsp-scala` to load for every scala file, add this:
 
 ```emacs-lisp
-(add-hook 'scala-mode-hook #'lsp-scala-enable)
+(add-hook 'scala-mode-hook #'lsp)
 ```
+
+## MELPA stable
+
+If you pin `lsp-mode` to MELPA stable, invoke the server with
+`lsp-scala-enable` rather than `lsp`.
 
 ## Does it work?
 
