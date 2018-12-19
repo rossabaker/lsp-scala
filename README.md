@@ -17,16 +17,16 @@ Here is an example using `use-package`:
 (use-package lsp-mode
   :ensure t)
 
-(use-package lsp-scala
-  :load-path "~/path/to/lsp-scala"
-  :config
-  (setq lsp-scala-server-command "~/bin/metals-emacs")
-  (require 'lsp)
-  (add-hook 'scala-mode #'lsp))
-
 (use-package lsp-ui
   :ensure t
   :hook (lsp-mode . lsp-ui-mode))
+
+(use-package lsp-scala
+  :load-path "~/path/to/lsp-scala"
+  :after scala-mode
+  :demand t
+  :hook (scala-mode . lsp)
+  :init (setq lsp-scala-server-command "~/bin/metals-emacs"))
 
 (use-package sbt-mode
   :ensure t
