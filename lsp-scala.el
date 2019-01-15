@@ -69,9 +69,10 @@
 		     :server-id 'scala)))
 
 ;; Legacy support for lsp-mode <= 5
-(lsp-define-stdio-client lsp-scala "scala"
-                         (lambda () (sbt:find-root))
-                         (lsp-scala--server-command))
+(when (fboundp 'lsp-define-stdio-client)
+  (lsp-define-stdio-client lsp-scala "scala"
+                           (lambda () (sbt:find-root))
+                           (lsp-scala--server-command)))
 
 (provide 'lsp-scala)
 ;;; lsp-scala.el ends here
