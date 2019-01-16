@@ -11,6 +11,11 @@ You must install the Emacs plugin (this) and a language server
 Clone this repo, and fetch `lsp-mode`, `lsp-ui`, and `sbt-mode` from
 MELPA with the package manager of your choice.  (We are working on
 adding this package to MELPA to make `lsp-scala` load like the rest.)
+
+This package no longer works with the "legacy lsp-mode" currently in
+MELPA stable.  Be sure to use unpin from stable when installing
+`lsp-mode` and `lsp-ui`.
+
 Here is an example using `use-package`:
 
 ```emacs-lisp
