@@ -1,5 +1,7 @@
 # lsp-scala
 
+[![Join the chat at https://gitter.im/rossabaker/lsp-scala](https://badges.gitter.im/rossabaker/lsp-scala.svg)](https://gitter.im/rossabaker/lsp-scala?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Scala support for [lsp-mode].
 
 ## Installation
