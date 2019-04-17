@@ -23,13 +23,13 @@ Some of this is too nuanced to fit in a boolean.  Some of this may be me my misu
 ### lsp-mode
 
 * [x] `lsp-capabilities`
-* [ ] `lsp-describe-thing-at-point`: `Wrong type argument: hash-table-p, nil`
+* [x] `lsp-describe-thing-at-point`
 * [ ] `lsp-document-highlight`: `Capability not supported by the language server: "documentHighlightProvider"`
 * [ ] `lsp-execute-code-action`: I don't know what this does
-* [ ] `lsp-format-buffer`: `Capability not supported by the language server: "documentFormattingProvider"`
-* [ ] `lsp-goto-implementation`: `Capability not supported by the language server: "implementationProvider"`, but see `xref-find-definitions`
-* [ ] `lsp-goto-type-definition`: `Capability not supported by the language server: "typeDefinitionProvider"`, but see `xref-find-definitions`
-* [ ] `lsp-hover`: `textDocument/hover is not supported`
+* [x] `lsp-format-buffer`
+* [x] `lsp-goto-implementation`
+* [ ] `lsp-goto-type-definition`
+* [x] `lsp-hover`
 * [ ] `lsp-rename`: `Capability not supported by the language server: "renameProvider"`
 * [x] `lsp-restart-workspace`
 * [ ] `lsp-signature-help`: `Capability not supported by the language server: "signatureHelpProvider"`
@@ -40,7 +40,7 @@ Some of this is too nuanced to fit in a boolean.  Some of this may be me my misu
 ### `lsp-ui`
 
 * [x] `lsp-ui-flycheck`: compiles on save, renders errors inline
-* [ ] `lsp-ui-doc`
+* [x] `lsp-ui-doc`
 * [ ] `lsp-ui-imenu`
 * [ ] `lsp-ui-peek`
 * [ ] `lsp-ui-sideline-enable`
