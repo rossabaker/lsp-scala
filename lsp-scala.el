@@ -35,12 +35,6 @@
 
 (defvar lsp-scala--config-options `())
 
-(defun lsp-scala--set-configuration ()
-  "Set the configuration for the Scala LSP server."
-  (lsp--set-configuration `(:metals ,lsp-scala--config-options)))
-
-(add-hook 'lsp-after-initialize-hook 'lsp-scala--set-configuration)
-
 (defun lsp-scala-build-import ()
   "Unconditionally run `sbt bloopInstall` and re-connect to the build server."
   (interactive)
@@ -65,7 +59,11 @@
  (make-lsp-client :new-connection
 		  (lsp-stdio-connection 'lsp-scala--server-command)
 		  :major-modes '(scala-mode)
-		  :server-id 'scala))
+		  :server-id 'scala
+                  :initialized-fn (lambda (workspace)
+                                    (with-lsp-workspace workspace
+                                      (lsp--set-configuration
+                                        `(:metals ,lsp-scala--config-options))))))
 
 (provide 'lsp-scala)
 ;;; lsp-scala.el ends here
