@@ -1,6 +1,6 @@
-# lsp-scala
+# DEPRECATED - lsp-scala
 
-[![Join the chat at https://gitter.im/rossabaker/lsp-scala](https://badges.gitter.im/rossabaker/lsp-scala.svg)](https://gitter.im/rossabaker/lsp-scala?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+`lsp-scala` is now part of [lsp-mode] as `lsp-metals`. Please do not use this package.
 
 Scala support for [lsp-mode], mainly focus on [metals].
 
